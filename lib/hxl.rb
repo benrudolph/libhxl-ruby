@@ -1,5 +1,11 @@
 class HXL
 
+  def self.open(path, permissions, &block)
+    CSV.open(path, permissions) do |csv|
+      yield csv
+    end
+  end
+
   def self.read(path)
     rows = []
     self.foreach(path) do |row|
